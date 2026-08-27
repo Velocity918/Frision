@@ -28,7 +28,7 @@ model = AutoModelForZeroShotObjectDetection.from_pretrained(
     MODEL_ID
 ).to(device)
 print("Model loaded!")
-image = Image.open("fridge.jpg").convert("RGB")
+image = Image.open("frid.jpg").convert("RGB")
 with open("food_names.json") as file:
     data = json.load(file)
 tally = 0
