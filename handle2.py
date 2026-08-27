@@ -22,7 +22,7 @@ predictor = SAM2ImagePredictor.from_pretrained(
 
 print("Model loaded!")
 
-image = Image.open("and.jpg").convert("RGB")
+image = Image.open("frid.jpg").convert("RGB")
 image_np = np.array(image)
 
 mask_generator = SAM2AutomaticMaskGenerator(
@@ -40,14 +40,22 @@ plt.imshow(image)
 
 ax = plt.gca()
 
-for mask_data in masks:
+for x,mask_data in enumerate(masks):
 
     mask = mask_data["segmentation"]
 
-    x, y, w, h = mask_data["bbox"]
-
+    x1, y1, w, h = mask_data["bbox"]
+    x2 = w+x1
+    y2 = h+y1
+    image
+    res = image.crop([
+    max(x1 - 10, 0),
+    max(y1 - 10, 0),
+    min(x2 + 10, image.width),
+    min(y2 + 10, image.height)])
+    res.save(f"object/{x}.jpg")
     rect = plt.Rectangle(
-        (x, y),
+        (x1, y1),
         w,
         h,
         linewidth=2,
