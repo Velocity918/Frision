@@ -10,7 +10,7 @@ import numpy as np
 from sam2.sam2_image_predictor import SAM2ImagePredictor
 from sam2.automatic_mask_generator import SAM2AutomaticMaskGenerator
 
-def object_detector(image):
+def load_objectifier():
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     print("Device:", device)
@@ -21,6 +21,8 @@ def object_detector(image):
     )
 
     print("Model loaded!")
+    return predictor,device
+def object_detector(image,device,predictor):
     image_np = np.array(image)
 
     mask_generator = SAM2AutomaticMaskGenerator(
